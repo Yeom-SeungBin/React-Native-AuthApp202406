@@ -12,11 +12,11 @@ const LoginScreen = () => {
     console.log('loginHandler email : ', email);
 
     try {
-      const token = await login(email, password);
+      const { token, userName, role } = await login(email, password);
       console.log('token : ', token);
-      authenticate(token);
+      authenticate(token, userName, role);
     } catch (error) {
-      Alert.alert(error);
+      Alert.alert(error.message);
     }
   };
 

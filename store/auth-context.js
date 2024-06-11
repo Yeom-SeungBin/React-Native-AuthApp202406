@@ -11,10 +11,12 @@ export const AuthContext = createContext({
 const AuthContextProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const authenticate = (token) => {
+  const authenticate = async (token, userName, role) => {
     console.log('authenticate called!');
-    AsyncStorage.setItem('ACCESS_TOKEN', token.access_token);
-    AsyncStorage.setItem('REFRESH_TOKEN', token.refresh_token);
+    await AsyncStorage.setItem('ACCESS_TOKEN', token.access_token);
+    await AsyncStorage.setItem('REFRESH_TOKEN', token.refresh_token);
+    await AsyncStorage.setItem('LOGIN_USERNAME', userName);
+    await AsyncStorage.setItem('USER_ROLE', role);
     setIsLoggedIn(true);
   };
 
